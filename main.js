@@ -63,6 +63,7 @@ $("html").on('click', '#playlistList div', function(){
 	activePlaylist = id;
 	$("#playlistList div").removeClass('active');
 	$(this).addClass('active');
+
 });
 
 $("html").on('click', '#nav-bar h2', function(){
@@ -73,22 +74,16 @@ $("html").on('click', '#nav-bar h2', function(){
 	$("#" + id + "Window").removeClass('hidden');
 });
 
-$("html").on('click', '#songList tr', function(){
-	$("#songList tr").removeClass('active');
+$("html").on('click', '.songList tr', function(){
+	$(".songList tr").removeClass('active');
 	$(this).addClass('active');
-	var tableVal = []
-	$(this).find('td').each(function(i){
-		tableVal.push($(this).text());
-	})
-	$("#songname").html(tableVal[0]);
-	$("#artistname").html(tableVal[1]);
-	$("#progress-right").html(tableVal[3]);
 });
 
 $(function(){
 	$("#add").on('click', function(){newPlaylist()})
 	playlistSidebar();
 	$("#" + activePlaylist).click();
+	showLibrary();
 });
 
 function playlistSidebar(){
@@ -114,32 +109,76 @@ function showPlaylist(playlist){
 	var durationVal = convertDuration(durationLength);
 	var duration = "<p>"+ durationVal[0] + " minutes " + durationVal[1] + " seconds</p>";
 	$("#playlistHeader").html(playlistName+numSongs+ duration);
-	var table = $("<table><table/>").attr("id","songList");
-	$("#playlistWindow .songTable").html(table);
-	var title = "<thead><tr><th>Title</th>";
-	var artist = "<th>Artist</th>";
-	var album = "<th>Album</th>";
-	var duration = "<th>Duration</th></tr></thead><tbody>";
-	$("#songList").append(title+artist+album+duration);
+	var table = $("<table></table>").attr("class","songList");
+
+	var html = `
+	<thead><tr><th>Title</th>
+	<th>Artist</th>
+	<th>Album</th>
+	<th>Duration</th></tr></thead><tbody>`
 
 	var playlistSongs = playlists[key];
 	for (song in playlistSongs['songs']){
 			var duration = 0;
 			var id = playlistSongs['songs'][song];
 			duration = convertDuration(songs[id]["duration"]);
-	    var title="<tr><td>"+songs[id]["title"]+"</td>";
-	    var artist="<td>"+songs[id]["artist"]+"</td>";
-	    var album="<td>"+songs[id]["album"]+"</td>";
-	    var duration="<td>"+ duration[0] + ":" + duration[1].toString().padStart(2,'0') +"</td></tr>"
-	   $("#songList").append(title+artist+album+duration);
+			html += `
+			<tr><td>${songs[id]["title"]}</td>
+			<td>${songs[id]["artist"]}</td>
+			<td>${songs[id]["album"]}</td>
+			<td>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</td></tr>
+			`
 	}
-	$("#songList").append("</tbody");
-	$('#songList').dataTable({
+	html += "</tbody>";
+	console.log(html);
+	table.html(html);
+	$("#playlistWindow .songTable").html(table);
+	$('.songList').dataTable({
 		paging: false,
 		searching: false,
 		 bInfo : false,
 		 "language": {
       "emptyTable": "There are no songs in this playlist."
+    },
+		"columns": [
+    { "width": "35%" },
+    { "width": "25%" },
+    { "width": "25%" },
+    { "width": "15%" },
+  ]
+	});
+}
+
+function showLibrary(){
+	var table = $("<table></table>").attr("class","songList");
+
+	var html = `
+	<thead><tr><th>Title</th>
+	<th>Artist</th>
+	<th>Album</th>
+	<th>Duration</th></tr></thead><tbody>`
+
+	for (song in songs){
+			var duration = 0;
+			var id = song;
+			duration = convertDuration(songs[id]["duration"]);
+
+			html += `
+			<tr><td>${songs[id]["title"]}</td>
+			<td>${songs[id]["artist"]}</td>
+			<td>${songs[id]["album"]}</td>
+			<td>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</td></tr>
+			`
+	}
+	html += "</tbody>";
+	table.html(html);
+	$("#libraryWindow .songTable").html(table);
+	$('#libraryWindow .songTable.songList').dataTable({
+		paging: false,
+		searching: false,
+		 bInfo : false,
+		 "language": {
+      "emptyTable": "There are no songs in your library."
     },
 		"columns": [
     { "width": "35%" },

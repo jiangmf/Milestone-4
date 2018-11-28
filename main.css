@@ -113,7 +113,7 @@ position: absolute;
     overflow-y: auto;
 }
 
-#content #songList {
+#content .songList {
   width:100%;
 }
 
@@ -246,24 +246,24 @@ button#settings{
   bottom: 10px;
   position: absolute;
 }
-#songList {
+.songList {
   border-collapse: collapse;
 }
 
-#songList tr {
+.songList tr {
   position:relative;
   cursor: pointer;
 }
 
-#songList tr:hover {
+.songList tr:hover {
   background-color: #535353;
 }
 
-#songList tr.active {
+.songList tr.active {
   background-color: #535353;
 }
 
-#songList tr.active:before {
+.songList tr.active:before {
   content: '\f04b';
   font-family: 'Font Awesome 5 Free';
   display: block;
@@ -273,16 +273,16 @@ button#settings{
   position: absolute;
 }
 
-#songList tr td:first-child {
+.songList tr td:first-child {
   padding-left: 40px;
 }
 
-#songList th, td{
+.songList th, td{
    padding: 10px;
    text-align: left;
    position:relative;
 }
 
-#songList th{
+.songList th{
   border-bottom: 1px solid white;
 }
