@@ -31,6 +31,7 @@ var playlists = [
     songs: [1,2,3,4],
   }
 ]
+
 $(function(){
 var table = $("<table><table/>").attr("id","songList");
 $("#songTable").append(table);
@@ -40,12 +41,12 @@ var album = "<td>Album</td>";
 var duration = "<td>Duration</td></tr>";
 $("#songList").append(title+artist+album+duration);
 
-for (var i = 0; i<songs.length; i++){
-    var title="<tr><td>"+songs[i]["title"]+"</td>";
-    console.log(songs[i]["title"]);
-    var artist="<td>"+songs[i]["artist"]+"</td>";
-    var album="<td>"+songs[i]["album"]+"</td>";
-    var duration="<td>"+songs[i]["duration"]+"</td></tr>"
+for (song in songs){
+    var title="<tr><td>"+songs[song]["title"]+"</td>";
+    console.log(songs[song]["title"]);
+    var artist="<td>"+songs[song]["artist"]+"</td>";
+    var album="<td>"+songs[song]["album"]+"</td>";
+    var duration="<td>"+songs[song]["duration"]+"</td></tr>"
    $("#songList").append(title+artist+album+duration);
 }
 })
