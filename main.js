@@ -77,6 +77,23 @@ $("html").on('click', '#nav-bar h2', function(){
 $("html").on('click', '.songList tr', function(){
 	$(".songList tr").removeClass('active');
 	$(this).addClass('active');
+	var tableVal = []
+	$(this).find('td').each(function(i){
+		tableVal.push($(this).text());
+	})
+	$("#songname").html(tableVal[0]);
+	$("#artistname").html(tableVal[1]);
+	$("#progress-right").html(tableVal[3]);
+	var time = tableVal[3].split(":");
+	var seconds = (+time[0]*60) + (+time[1]);
+	$("#progressbar").attr("max",seconds);
+	var currenttime = convertDuration($("#progressbar").val());
+	$("#progress-left").html(currenttime[0]+":"+currenttime[1].toString().padStart(2,'0'));
+	$("#progressbar").on('input',function(){
+		var currenttime = convertDuration($(this).val());
+		$("#progress-left").html(currenttime[0]+":"+currenttime[1].toString().padStart(2,'0'));
+	});
+
 });
 
 $(function(){
