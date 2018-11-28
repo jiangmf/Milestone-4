@@ -121,10 +121,10 @@ function showPlaylist(playlist){
       "emptyTable": "There are no songs in this playlist."
     },
 		"columns": [
-    { "width": "40%" },
+    { "width": "35%" },
     { "width": "25%" },
     { "width": "25%" },
-    { "width": "10%" },
+    { "width": "15%" },
   ]
 	});
 }
