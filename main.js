@@ -64,6 +64,11 @@ $("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
 	$(this).addClass('active');
 });
 
+$("html").on('click', '#songList tr', function(){
+	$("#songList tr").removeClass('active');
+	$(this).addClass('active');
+});
+
 $(function(){
 	$("#add").on('click', function(){newPlaylist()})
 	playlistSidebar();

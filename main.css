@@ -185,7 +185,6 @@ button#settings{
   position:absolute;
   left:0;
   top: 0;
-  background-image: url('https://picsum.photos/200/200/?image=1');
 }
 
 #controls p {
@@ -251,11 +250,30 @@ button#settings{
 }
 
 #songList tr {
+  position:relative;
   cursor: pointer;
 }
 
 #songList tr:hover {
   background-color: #535353;
+}
+
+#songList tr.active {
+  background-color: #535353;
+}
+
+#songList tr.active:before {
+  content: '\f04b';
+  font-family: 'Font Awesome 5 Free';
+  display: block;
+  font-weight: 900;
+  left: 10px;
+  top: 10px;
+  position: absolute;
+}
+
+#songList tr td:first-child {
+  padding-left: 40px;
 }
 
 #songList th, td{
