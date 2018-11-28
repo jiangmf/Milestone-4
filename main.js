@@ -36,6 +36,14 @@ var playlists = {
 		songs: [3,4]
 	}
 }
+$("html").on("click", ".fas.fa-play", function(){
+	$(this).addClass("hidden");
+	$(".fas.fa-pause").removeClass("hidden");
+})
+$("html").on("click", ".fas.fa-pause", function(){
+	$(this).addClass("hidden");
+	$(".fas.fa-play").removeClass("hidden");
+})
 
 $(function(){
 var table = $("<table><table/>").attr("id","songList");
