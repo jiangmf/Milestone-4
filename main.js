@@ -57,11 +57,20 @@ $("html").on("click", ".fas.fa-pause", function(){
 	$(".fas.fa-play").removeClass("hidden");
 })
 
-$("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
+$("html").on('click', '#playlistList div', function(){
+	var id = $(this).attr('id');
 	showPlaylist(id)
 	activePlaylist = id;
 	$("#playlistList div").removeClass('active');
 	$(this).addClass('active');
+});
+
+$("html").on('click', '#nav-bar h2', function(){
+	var id = $(this).attr('data-id');
+	$("#nav-bar h2").removeClass('active');
+	$(this).addClass('active');
+	$("[id$='Window']").addClass('hidden');
+	$("#" + id + "Window").removeClass('hidden');
 });
 
 $("html").on('click', '#songList tr', function(){
@@ -99,7 +108,7 @@ function showPlaylist(playlist){
 	var duration = "<p>"+ durationVal[0] + " minutes " + durationVal[1] + " seconds</p>";
 	$("#playlistHeader").html(playlistName+numSongs+ duration);
 	var table = $("<table><table/>").attr("id","songList");
-	$("#songTable").html(table);
+	$("#playlistWindow .songTable").html(table);
 	var title = "<thead><tr><th>Title</th>";
 	var artist = "<th>Artist</th>";
 	var album = "<th>Album</th>";

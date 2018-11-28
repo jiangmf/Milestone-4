@@ -55,6 +55,7 @@ p {
   display: inline-block;
   padding: 0 20px 0 20px;
   margin: 0;
+  cursor: pointer;
 }
 
 #nav-bar h2.active {

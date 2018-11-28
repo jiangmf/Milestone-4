@@ -12,10 +12,10 @@
   <body>
     <div id="main">
       <div id="nav-bar">
-        <h2>Discover</h2>
-        <h2>Library</h2>
-        <h2 class="active">Playlist</h2>
-        <h2>Now Playing</h2>
+        <h2 data-id="discover">Discover</h2>
+        <h2 data-id="library">Library</h2>
+        <h2 data-id="playlist" class="active">Playlist</h2>
+        <h2 data-id="now-playing">Now Playing</h2>
         <input type="search" name="" value="" placeholder="Search">
       </div>
       <div id="center">
@@ -29,9 +29,15 @@
 
         </div>
         <div id="content">
-          <div id="playlistHeader">
+          <div id="libraryWindow" class="hidden">
+            <div class="songTable">
+            </div>
           </div>
-          <div id="songTable">
+          <div id="playlistWindow">
+            <div id="playlistHeader">
+            </div>
+            <div class="songTable">
+            </div>
           </div>
         </div>
       </div>
