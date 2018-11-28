@@ -3,25 +3,31 @@ var songs = {
     artist: "Kanye West",
     title: "All of the Lights",
     album: "My Beautiful Dark Twisted Fantasy",
-    duration: "5:00"
+    duration: 300
   },
   2: {
     artist: "BROCKHAMPTON",
     title: "District",
     album: "iridescence",
-    duration: "3:31"
+    duration: 211
   },
-  3: {
+	3:{
+		artist: "Kendrick Lamar",
+    title: "Humble",
+    album: "DAMN",
+    duration: 177
+	},
+  4: {
     artist: "Travis Scott",
     title: "Skyfall",
     album: "Days Before Rodeo",
-    duration: "3:31"
+    duration: 318
   },
-  4: {
+  5: {
     artist: "Denzel Curry",
     title: "This Life",
     album: "Imperial",
-    duration: "3:27"
+    duration: 207
   }
 };
 
@@ -72,14 +78,21 @@ function playlistSidebar(){
 			name.addClass('active');
 		}
 		$("#playlistList").append(name);
-		console.log("#"+playlistName)
 	}
 }
 
 function showPlaylist(playlist){
-	console.log(playlist);
 	var key = playlist;
-
+	var playlistName = "<h3>"+ playlist+"</h3>";
+	var numSongs = "<p>" + playlists[key].songs.length + " Songs</p>";
+	var durationLength = 0;
+	for (i in playlists[key].songs){
+		var id = playlists[key].songs[i]
+		durationLength = durationLength + songs[id].duration;
+	}
+	var durationVal = convertDuration(durationLength);
+	var duration = "<p>"+ durationVal[0] + " minutes " + durationVal[1] + " seconds</p>";
+	$("#playlistHeader").html(playlistName+numSongs+ duration);
 	var table = $("<table><table/>").attr("id","songList");
 	$("#songTable").html(table);
 	var title = "<thead><tr><th>Title</th>";
@@ -89,13 +102,14 @@ function showPlaylist(playlist){
 	$("#songList").append(title+artist+album+duration);
 
 	var playlistSongs = playlists[key];
-	console.log(playlistSongs);
 	for (song in playlistSongs['songs']){
+			var duration = 0;
 			var id = playlistSongs['songs'][song];
+			duration = convertDuration(songs[id]["duration"]);
 	    var title="<tr><td>"+songs[id]["title"]+"</td>";
 	    var artist="<td>"+songs[id]["artist"]+"</td>";
 	    var album="<td>"+songs[id]["album"]+"</td>";
-	    var duration="<td>"+songs[id]["duration"]+"</td></tr>"
+	    var duration="<td>"+ duration[0] + ":" + duration[1].toString().padStart(2,'0') +"</td></tr>"
 	   $("#songList").append(title+artist+album+duration);
 	}
 	$("#songList").append("</tbody");
@@ -115,6 +129,11 @@ function showPlaylist(playlist){
 	});
 }
 
+function convertDuration(duration){
+	var minutes = parseInt(duration/60);
+	var seconds = duration%60;
+	return [minutes,seconds]
+}
 function newPlaylist(){
 	$("#playlistList").html("");
 	var name = prompt("Enter Playlist name:", "Playlist");
@@ -123,6 +142,5 @@ function newPlaylist(){
 		songs: []
 	}
 	playlists[name] = value;
-	console.log(playlists);
 	playlistSidebar();
 }
