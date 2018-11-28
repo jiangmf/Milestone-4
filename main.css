@@ -226,3 +226,35 @@ button#settings{
   flex: 0 0 50px;
   text-align:center;
 }
+
+.sorting_asc:after {
+  content: '\f078';
+  font-family: 'Font Awesome 5 Free';
+  display: block;
+  font-weight: 900;
+  right: 10px;
+  bottom: 10px;
+  position: absolute;
+}
+.sorting_desc:after {
+  content: '\f077';
+  font-family: 'Font Awesome 5 Free';
+  display: block;
+  font-weight: 900;
+  right: 10px;
+  bottom: 10px;
+  position: absolute;
+}
+#songList {
+  border-collapse: collapse;
+}
+
+#songList th, td{
+   padding: 10px;
+   text-align: left;
+   position:relative;
+}
+
+#songList th{
+  border-bottom: 1px solid white;
+}
