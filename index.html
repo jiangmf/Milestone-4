@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="main.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="main.css">
-  </head>
-  <body>
-    <div id="main">
-      <div id="nav-bar">
-        <h2 data-id="discover">Discover</h2>
-        <h2 data-id="library">Library</h2>
-        <h2 data-id="playlist" class="active">Playlist</h2>
-        <h2 data-id="now-playing">Now Playing</h2>
-        <input type="search" name="" value="" placeholder="Search">
-      </div>
-      <div id="center">
-        <div id="side-bar">
-          <h2>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="main.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+  <div id="main">
+    <div id="nav-bar">
+      <h2 data-id="discover">Discover</h2>
+      <h2 data-id="library">Library</h2>
+      <h2 data-id="playlist" class="active">Playlist</h2>
+      <h2 data-id="now-playing">Now Playing</h2>
+      <input type="search" name="" value="" placeholder="Search">
+    </div>
+    <div id="center">
+      <div id="side-bar">
+        <h2>
           Playlists<button id="add"><i class="fas fa-plus"></i></button>
-          </h2>
-          <div id="playlistList">
-
-          </div>
+        </h2>
+        <div id="playlistList">
 
         </div>
-        <div id="content">
-          <div id="libraryWindow" class="hidden">
-            <div class="songTable">
-            </div>
+
+      </div>
+      <div id="content">
+        <div id="libraryWindow" class="hidden">
+          <div class="songTable">
           </div>
-          <div id="playlistWindow">
-            <div id="playlistHeader">
-            </div>
-            <div class="songTable">
-            </div>
+        </div>
+        <div id="playlistWindow">
+          <div id="playlistHeader">
+          </div>
+          <div class="songTable">
           </div>
         </div>
       </div>
-      <div id="controls">
+    </div>
+    <div id="controls">
       <p id="albumart"></p>
       <p id="songname">Now Playing</p>
       <p id="artistname">None</p>
@@ -50,17 +52,18 @@
         <input id="progressbar" type="range" min="0" max="100" value="0">
         <div id="progress-right">0:00</div>
       </div>
-        <button id="shuffle" ><i class="fas fa-random"></i></button>
-        <button id="backward" ><i class="fas fa-step-backward"></i></button>
-        <button id="play" ><i class="fas fa-play"></i><i class="fas fa-pause hidden"></i></button>
-        <button id="forward" ><i class="fas fa-step-forward"></i></button>
-        <button id="repeat" ><i class="fas fa-redo-alt"></i></button>
-        <button id="volume" ><i class="fas fa-volume-up"></i></button>
-        <button id="details" ><i class="fas fa-list-ul"></i></button>
-        <button id="eq" ><i class="fas fa-sliders-h"></i></button>
-        <button id="settings" ><i class="fas fa-cog"></i></button>
+      <button id="shuffle"><i class="fas fa-random"></i></button>
+      <button id="backward"><i class="fas fa-step-backward"></i></button>
+      <button id="play"><i class="fas fa-play"></i><i class="fas fa-pause hidden"></i></button>
+      <button id="forward"><i class="fas fa-step-forward"></i></button>
+      <button id="repeat"><i class="fas fa-redo-alt"></i></button>
+      <button id="volume"><i class="fas fa-volume-up"></i></button>
+      <button id="details"><i class="fas fa-list-ul"></i></button>
+      <button id="eq"><i class="fas fa-sliders-h"></i></button>
+      <button id="settings"><i class="fas fa-cog"></i></button>
 
-      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

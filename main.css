@@ -1,15 +1,15 @@
 * {
-  box-sizing:  border-box;
+  box-sizing: border-box;
 }
 
 button, input[type="submit"], input[type="reset"] {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 body {
@@ -37,16 +37,16 @@ p {
 #main {
   background-color: #616161;
   color: white;
-  display:flex;
+  display: flex;
   flex-direction: column;
-  height:100%;
+  height: 100%;
 }
 
 #nav-bar {
   background-color: #3D3D3D;
   padding: 20px 20px 20px 200px;
   flex: 0 0 68px;
-  display:flex;
+  display: flex;
   align-items: center;
   position: relative;
 }
@@ -65,7 +65,7 @@ p {
 #nav-bar input {
   height: 28px;
   border: 2px solid #15CFE5;
-  position:absolute;
+  position: absolute;
   right: 20px;
   border-radius: 5px;
   padding-left: 30px;
@@ -78,7 +78,7 @@ p {
   font-weight: 900;
   color: #3d3d3d;
   right: 200px;
-position: absolute;
+  position: absolute;
 }
 
 #center {
@@ -96,25 +96,27 @@ position: absolute;
   margin-left: 40px;
 }
 
-#side-bar #playlistList div{
+#side-bar #playlistList div {
   margin: 0 -20px;
   padding: 10px 20px;
 }
+
 #side-bar #playlistList div.active {
   background-color: #3D3D3D;
 }
-#side-bar #playlistList div p{
+
+#side-bar #playlistList div p {
   margin-bottom: 0;
 }
 
 #content {
-    flex-grow: 1;
-    padding: 20px;
-    overflow-y: auto;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 #content .songList {
-  width:100%;
+  width: 100%;
 }
 
 #controls {
@@ -146,9 +148,11 @@ button:active {
 button#shuffle {
   left: calc(50% - 220px);
 }
+
 button#backward {
   left: calc(50% - 120px);
 }
+
 button#play {
   left: calc(50% - 25px);
   bottom: 35px;
@@ -156,35 +160,41 @@ button#play {
   height: 50px;
   font-size: 50px;
 }
+
 button#forward {
   left: calc(50% + 80px);
 }
+
 button#repeat {
   left: calc(50% + 180px);
 }
+
 button#volume {
   right: 220px;
   font-size: 25px;
 }
+
 button#details {
   right: 160px;
   font-size: 25px;
 }
-button#eq{
-    right: 100px;
-    font-size: 25px;
-}
-button#settings{
-    right: 40px;
-    font-size: 25px;
+
+button#eq {
+  right: 100px;
+  font-size: 25px;
 }
 
-#controls #albumart{
+button#settings {
+  right: 40px;
+  font-size: 25px;
+}
+
+#controls #albumart {
   width: 200px;
   height: 100%;
   background-color: red;
-  position:absolute;
-  left:0;
+  position: absolute;
+  left: 0;
   top: 0;
 }
 
@@ -194,7 +204,7 @@ button#settings{
 }
 
 #controls #songname {
-  font-weight:bold;
+  font-weight: bold;
   font-size: 24px;
   margin: 20px 0 5px 0;
 }
@@ -206,7 +216,7 @@ button#settings{
 #controls #progress {
   margin: auto;
   width: 600px;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -225,7 +235,7 @@ button#settings{
 #controls #progress-left,
 #controls #progress-right {
   flex: 0 0 50px;
-  text-align:center;
+  text-align: center;
 }
 
 .sorting_asc:after {
@@ -237,6 +247,7 @@ button#settings{
   bottom: 10px;
   position: absolute;
 }
+
 .sorting_desc:after {
   content: '\f077';
   font-family: 'Font Awesome 5 Free';
@@ -246,12 +257,13 @@ button#settings{
   bottom: 10px;
   position: absolute;
 }
+
 .songList {
   border-collapse: collapse;
 }
 
 .songList tr {
-  position:relative;
+  position: relative;
   cursor: pointer;
 }
 
@@ -263,13 +275,12 @@ button#settings{
   background-color: #535353;
 }
 
-.songList tr.active:before {
+.songList tr.active td:first-child:before {
   content: '\f04b';
   font-family: 'Font Awesome 5 Free';
   display: block;
   font-weight: 900;
   left: 10px;
-  top: 10px;
   position: absolute;
 }
 
@@ -277,12 +288,18 @@ button#settings{
   padding-left: 40px;
 }
 
-.songList th, td{
-   padding: 10px;
-   text-align: left;
-   position:relative;
+.songList th, td {
+  padding: 10px;
+  text-align: left;
+  position: relative;
 }
 
-.songList th{
+.songList td span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.songList th {
   border-bottom: 1px solid white;
 }
