@@ -67,6 +67,13 @@ $("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
 $("html").on('click', '#songList tr', function(){
 	$("#songList tr").removeClass('active');
 	$(this).addClass('active');
+	var tableVal = []
+	$(this).find('td').each(function(i){
+		tableVal.push($(this).text());
+	})
+	$("#songname").html(tableVal[0]);
+	$("#artistname").html(tableVal[1]);
+	$("#progress-right").html(tableVal[3]);
 });
 
 $(function(){
