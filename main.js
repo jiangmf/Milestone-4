@@ -145,7 +145,7 @@ function showPlaylist(playlist){
 			<td>${songs[id]["album"]}</td>
 			<td>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</td></tr>
 			`
-	}
+	} 
 	html += "</tbody>";
 	console.log(html);
 	table.html(html);
