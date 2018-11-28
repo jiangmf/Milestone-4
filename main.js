@@ -31,7 +31,7 @@ var playlists = [
     songs: [1,2,3,4],
   }
 ]
-
+$(function(){
 var table = $("<table><table/>").attr("id","songList");
 $("#songTable").append(table);
 var title = "<tr><td>Title</td>";
@@ -48,3 +48,4 @@ for (var i = 0; i<songs.length; i++){
     var duration="<td>"+songs[i]["duration"]+"</td></tr>"
    $("#songList").append(title+artist+album+duration);
 }
+})
