@@ -25,12 +25,17 @@ var songs = {
   }
 };
 
-var playlists = [
-	{
-  	name: "asd",
-    songs: [1,2,3,4],
-  }
-]
+var playlists = {
+	'Study':{
+    songs: [1,2]
+  },
+	'Gym':{
+		songs: [1,2,3,4]
+	},
+	'Relax':{
+		songs: [3,4]
+	}
+}
 
 $(function(){
 var table = $("<table><table/>").attr("id","songList");
@@ -40,13 +45,14 @@ var album = "<td>Artist</td>";
 var album = "<td>Album</td>";
 var duration = "<td>Duration</td></tr>";
 $("#songList").append(title+artist+album+duration);
-
-for (song in songs){
-    var title="<tr><td>"+songs[song]["title"]+"</td>";
-    console.log(songs[song]["title"]);
-    var artist="<td>"+songs[song]["artist"]+"</td>";
-    var album="<td>"+songs[song]["album"]+"</td>";
-    var duration="<td>"+songs[song]["duration"]+"</td></tr>"
+var key = 'Study'
+var playlistSongs = playlists[key];
+for (song in playlistSongs['songs']){
+		var id = playlistSongs['songs'][song];
+    var title="<tr><td>"+songs[id]["title"]+"</td>";
+    var artist="<td>"+songs[id]["artist"]+"</td>";
+    var album="<td>"+songs[id]["album"]+"</td>";
+    var duration="<td>"+songs[id]["duration"]+"</td></tr>"
    $("#songList").append(title+artist+album+duration);
 }
 })
