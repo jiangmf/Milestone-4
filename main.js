@@ -56,7 +56,9 @@ for (index in playlists){
 	console.log("#"+playlistName)
 }
 $("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
-showPlaylist(id)
+showPlaylist(id);
+$('#playlistList div').removeClass('active');
+$(this).addClass('active');
 });
 
 })
@@ -67,10 +69,10 @@ function showPlaylist(playlist){
 
 	var table = $("<table><table/>").attr("id","songList");
 	$("#songTable").html(table);
-	var title = "<tr><td>Title</td>";
-	var artist = "<td>Artist</td>";
-	var album = "<td>Album</td>";
-	var duration = "<td>Duration</td></tr>";
+	var title = "<tr><th>Title</th>";
+	var artist = "<th>Artist</th>";
+	var album = "<th>Album</th>";
+	var duration = "<th>Duration</th></tr>";
 	$("#songList").append(title+artist+album+duration);
 
 	var playlistSongs = playlists[key];
