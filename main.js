@@ -49,19 +49,23 @@ $("html").on("click", ".fas.fa-pause", function(){
 })
 
 $(function(){
-for (index in playlists){
-	var playlistName = playlists[index].name;
-	var name = $("<div><p>"+ playlistName +"</p></div>").attr("id", playlistName);
-	$("#playlistList").append(name);
-	console.log("#"+playlistName)
-}
-$("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
-showPlaylist(id);
-$('#playlistList div').removeClass('active');
-$(this).addClass('active');
+	$("#add").on('click', function(){newPlaylist()})
+	playlistSidebar();
 });
 
-})
+function playlistSidebar(){
+	for (index in playlists){
+		var playlistName = playlists[index].name;
+		var name = $("<div><p>"+ playlistName +"</p></div>").attr("id", playlistName);
+		$("#playlistList").append(name);
+		console.log("#"+playlistName)
+	}
+	$("html").on('click', '#playlistList div', function(){id = $(this).attr('id');
+	showPlaylist(id)
+	$('#playlistList div').removeClass('active');
+	$(this).addClass('active');
+	});
+}
 
 function showPlaylist(playlist){
 	console.log(playlist);
@@ -85,4 +89,16 @@ function showPlaylist(playlist){
 	    var duration="<td>"+songs[id]["duration"]+"</td></tr>"
 	   $("#songList").append(title+artist+album+duration);
 	}
+}
+
+function newPlaylist(){
+	$("#playlistList").html("");
+	var name = prompt("Enter Playlist name:", "Playlist");
+	var value = {
+		name: name,
+		songs: []
+	}
+	playlists[name] = value;
+	console.log(playlists);
+	playlistSidebar();
 }
