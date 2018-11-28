@@ -103,6 +103,15 @@ function showPlaylist(playlist){
 		paging: false,
 		searching: false,
 		 bInfo : false,
+		 "language": {
+      "emptyTable": "There are no songs in this playlist."
+    },
+		"columns": [
+    { "width": "40%" },
+    { "width": "25%" },
+    { "width": "25%" },
+    { "width": "10%" },
+  ]
 	});
 }
 
