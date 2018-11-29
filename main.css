@@ -110,6 +110,12 @@ p {
   margin-bottom: 0;
 }
 
+#side-bar #playlistList div span {
+  float: right;
+  font-size: 10px;
+  line-height: 18px;
+}
+
 #content {
   flex-grow: 1;
   padding: 20px;

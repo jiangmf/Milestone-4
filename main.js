@@ -442,9 +442,11 @@ $(function() {
 });
 
 function playlistSidebar() {
+	$("#playlistList").html("");
   for (index in playlists) {
     var playlistName = playlists[index].name;
-    var name = $("<div><p>" + playlistName + "</p></div>").attr("id", playlistName);
+		var playlistSongs = playlists[index].songs.length;
+    var name = $('<div ondrop="drop(event)" ondragover="allowDrop(event)"><p>' + playlistName + "<span>" + playlistSongs + " Songs</span></p></div>").attr("id", playlistName);
     if (playlistName == activePlaylist) {
       name.addClass('active');
     }
@@ -478,7 +480,7 @@ function showPlaylist(playlist) {
     var id = playlistSongs['songs'][song];
     duration = convertDuration(songs[id]["duration"]);
     html += `
-			<tr data-id=${id}><td><span>${songs[id]["title"]}</span></td>
+			<tr data-id=${id} draggable="true" ondragstart="drag(event)"><td><span>${songs[id]["title"]}</span></td>
 			<td><span>${songs[id]["artist"]}</span></td>
 			<td><span>${songs[id]["album"]}</span></td>
 			<td><span>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</span></td></tr>
@@ -527,7 +529,7 @@ function showLibrary() {
     duration = convertDuration(songs[id]["duration"]);
 
     html += `
-			<tr data-id=${id}><td><span>${songs[id]["title"]}</span></td>
+			<tr data-id=${id} draggable="true" ondragstart="drag(event)"><td><span>${songs[id]["title"]}</span></td>
 			<td><span>${songs[id]["artist"]}</span></td>
 			<td><span>${songs[id]["album"]}</span></td>
 			<td><span>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</span></td></tr>
@@ -576,4 +578,24 @@ function newPlaylist() {
   }
   playlists[name] = value;
   playlistSidebar();
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("songid", ev.target.getAttribute('data-id'));
+}
+
+function drop(ev) {
+    ev.preventDefault();
+		var id = ev.dataTransfer.getData('songid');
+		console.log(ev)
+		var playlist = $(ev.target).closest("div").attr("id");
+		playlists[playlist].songs.push(id);
+		playlistSidebar();
+		if(activePlaylist == playlist){
+		showPlaylist(playlist);
+		}
 }
