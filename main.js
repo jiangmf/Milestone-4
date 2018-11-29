@@ -390,7 +390,6 @@ $("html").on("click", ".fas.fa-play", function() {
   intervalTimer = setInterval(bar, 1000);
   isPlaying = true;
   function bar(){
-		console.log("a")
     if(isPlaying){
       if (progressVal == + $("#progressbar").attr('max')){
 				$(".fa-step-forward").click();

@@ -218,7 +218,11 @@ button#settings {
 #controls #songname {
   font-weight: bold;
   font-size: 24px;
-  margin: 20px 0 5px 0;
+  margin: 20px auto 5px auto;
+    max-width: 600px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #controls #albumname {
@@ -317,4 +321,27 @@ button#settings {
 
 .songList th {
   border-bottom: 1px solid white;
+}
+
+#discoverAlbums {
+  display: flex;
+flex-wrap: wrap;
+margin: 0 -20px 0 -20px;
+
+}
+
+.album {
+  margin: 20px;
+  width: 240px;
+  text-align: center;
+}
+
+.album img{
+  max-width: 100%;
+  margin-bottom: 10px;
+}
+
+.album img + p{
+  font-weight: bold;
+  margin-bottom: 5px;
 }
