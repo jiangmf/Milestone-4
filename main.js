@@ -390,7 +390,6 @@ $("html").on("click", ".fas.fa-play", function() {
   intervalTimer = setInterval(bar, 1000);
   isPlaying = true;
   function bar(){
-		console.log("a")
     if(isPlaying){
       if (progressVal == + $("#progressbar").attr('max')){
 				$(".fa-step-forward").click();
@@ -459,10 +458,26 @@ $("html").on('click', '.fa-random, .fa-redo-alt', function(){
 });
 
 $("html").on('click', '.fa-step-backward', function(){
-	$("tr.active:visible").prev("tr").click();
+  if ($(".fa-redo-alt").hasClass("toggle")){
+    $("tr.active:visible").click();
+  }else if($(".fa-random").hasClass("toggle")){
+    var random = Math.floor( (Math.random() * $('tbody tr:visible').length) + 1 )
+    $("tbody tr:visible").eq(random).click();
+  }else{
+    $("tr.active:visible").prev("tr").click();
+  }
 })
+
 $("html").on('click', '.fa-step-forward', function(){
-	$("tr.active:visible").next("tr").click();
+  if ($(".fa-redo-alt").hasClass("toggle")){
+    $("tr.active:visible").click();
+  }else if($(".fa-random").hasClass("toggle")){
+    var random = Math.floor( (Math.random() * $('tbody tr:visible').length) + 1 )
+    $("tbody tr:visible").eq(random).click();
+  }else{
+    $("tr.active:visible").next("tr").click();
+
+  }
 })
 
 $(function() {
@@ -624,7 +639,6 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
 		var id = ev.dataTransfer.getData('songid');
-		console.log(ev)
 		var playlist = $(ev.target).closest("div").attr("id");
 		playlists[playlist].songs.push(+id);
 		playlists[playlist].songs = [...new Set(playlists[playlist].songs)]
