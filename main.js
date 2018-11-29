@@ -364,7 +364,7 @@ var songs = {
 var playlists = {
   'Study': {
     name: 'Study',
-    songs: [1, 2]
+    songs: [1, 2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,24,26,27,30,34,48]
   },
   'Gym': {
     name: 'Gym',
@@ -431,6 +431,11 @@ $("html").on('input', '#progressbar', function() {
 	var currenttime = convertDuration($(this).val());
 	$("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
 });
+
+$("html").on('click', '.fa-random,.fa-redo-alt', function(){
+  console.log("clicked")
+  $(this).toggleClass("toggle")
+})
 
 $(function() {
   $("#add").on('click', function() {

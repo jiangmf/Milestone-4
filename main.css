@@ -137,6 +137,9 @@ p {
   text-align: center;
   vertical-align: baseline;
 }
+.toggle{
+  color: #15CFE5;
+}
 
 button:hover {
   color: #dddddd;
