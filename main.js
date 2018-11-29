@@ -458,10 +458,26 @@ $("html").on('click', '.fa-random, .fa-redo-alt', function(){
 });
 
 $("html").on('click', '.fa-step-backward', function(){
-	$("tr.active:visible").prev("tr").click();
+  if ($(".fa-redo-alt").hasClass("toggle")){
+    $("tr.active:visible").click();
+  }else if($(".fa-random").hasClass("toggle")){
+    var random = Math.floor( (Math.random() * $('tbody tr:visible').length) + 1 )
+    $("tbody tr:visible").eq(random).click();
+  }else{
+    $("tr.active:visible").prev("tr").click();
+  }
 })
+
 $("html").on('click', '.fa-step-forward', function(){
-	$("tr.active:visible").next("tr").click();
+  if ($(".fa-redo-alt").hasClass("toggle")){
+    $("tr.active:visible").click();
+  }else if($(".fa-random").hasClass("toggle")){
+    var random = Math.floor( (Math.random() * $('tbody tr:visible').length) + 1 )
+    $("tbody tr:visible").eq(random).click();
+  }else{
+    $("tr.active:visible").next("tr").click();
+
+  }
 })
 
 $(function() {
@@ -488,8 +504,8 @@ function playlistSidebar() {
 
 function showPlaylist(playlist) {
   var key = playlist;
-  var playlistName = "<h3>" + playlist + "</h3>";
-  var numSongs = "<p>" + playlists[key].songs.length + " Songs</p>";
+  var playlistName = "<h3 style='margin-top: 0; margin-bottom: 10px'>" + playlist + "</h3>";
+  var numSongs = "<p style='margin-bottom: 10px'>" + playlists[key].songs.length + " Songs</p>";
   var durationLength = 0;
   for (i in playlists[key].songs) {
     var id = playlists[key].songs[i]
@@ -497,7 +513,8 @@ function showPlaylist(playlist) {
   }
   var durationVal = convertDuration(durationLength);
   var duration = "<p>" + durationVal[0] + " minutes " + durationVal[1] + " seconds</p>";
-  $("#playlistHeader").html(playlistName + numSongs + duration);
+  var playlistArt = `<img style="float:left; margin-right: 20px; margin-bottom: 10px;" src='https://picsum.photos/100/100/?image=${playlists[key].songs[0]}'/>`;
+  $("#playlistHeader").html(playlistArt + playlistName + numSongs + duration);
   var table = $("<table></table>").attr("class", "songList");
 
   var html = `
@@ -623,7 +640,6 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
 		var id = ev.dataTransfer.getData('songid');
-		console.log(ev)
 		var playlist = $(ev.target).closest("div").attr("id");
 		playlists[playlist].songs.push(+id);
 		playlists[playlist].songs = [...new Set(playlists[playlist].songs)]
