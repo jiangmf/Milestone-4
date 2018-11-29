@@ -24,6 +24,7 @@ body {
 
 h2 {
   margin: 0 0 20px 0;
+  user-select: none;
 }
 
 p {
@@ -267,6 +268,7 @@ button#settings {
 .songList tr {
   position: relative;
   cursor: pointer;
+  user-select: none;
 }
 
 .songList tr:hover {
@@ -297,6 +299,8 @@ button#settings {
 }
 
 .songList td span {
+  display:block;
+  max-width: 183px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
