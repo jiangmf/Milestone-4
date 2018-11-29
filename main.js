@@ -377,14 +377,30 @@ var playlists = {
 }
 
 var activePlaylist = Object.keys(playlists)[0];
+var isPlaying = false;
 
 $("html").on("click", ".fas.fa-play", function() {
   $(this).addClass("hidden");
   $(".fas.fa-pause").removeClass("hidden");
+  var progressVal = $("#progressbar").val();
+  var id = setInterval(bar, 1000);
+  isPlaying = true;
+  function bar(){
+    if(isPlaying){
+      if (progressVal>=100){
+        clearInterval(progressVal)
+      }else{
+        progressVal++;
+        $("#progressbar").val(progressVal).trigger('input');
+      }
+    }
+  }
 })
 $("html").on("click", ".fas.fa-pause", function() {
   $(this).addClass("hidden");
   $(".fas.fa-play").removeClass("hidden");
+  var progressVal = $("#progressbar").val();
+  isPlaying = false;
 })
 
 $("html").on('click', '#playlistList div', function() {
