@@ -504,8 +504,8 @@ function playlistSidebar() {
 
 function showPlaylist(playlist) {
   var key = playlist;
-  var playlistName = "<h3>" + playlist + "</h3>";
-  var numSongs = "<p>" + playlists[key].songs.length + " Songs</p>";
+  var playlistName = "<h3 style='margin-top: 0; margin-bottom: 10px'>" + playlist + "</h3>";
+  var numSongs = "<p style='margin-bottom: 10px'>" + playlists[key].songs.length + " Songs</p>";
   var durationLength = 0;
   for (i in playlists[key].songs) {
     var id = playlists[key].songs[i]
@@ -513,7 +513,8 @@ function showPlaylist(playlist) {
   }
   var durationVal = convertDuration(durationLength);
   var duration = "<p>" + durationVal[0] + " minutes " + durationVal[1] + " seconds</p>";
-  $("#playlistHeader").html(playlistName + numSongs + duration);
+  var playlistArt = `<img style="float:left; margin-right: 20px; margin-bottom: 10px;" src='https://picsum.photos/100/100/?image=${playlists[key].songs[0]}'/>`;
+  $("#playlistHeader").html(playlistArt + playlistName + numSongs + duration);
   var table = $("<table></table>").attr("class", "songList");
 
   var html = `
