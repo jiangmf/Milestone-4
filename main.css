@@ -15,7 +15,7 @@ button, input[type="submit"], input[type="reset"] {
 body {
   font-family: sans-serif;
   width: 1100px;
-  height: 600px;
+  height: 700px;
 }
 
 .hidden {
@@ -138,7 +138,7 @@ p {
 }
 
 button:hover {
-  color: #eeeeee;
+  color: #dddddd;
 }
 
 button:active {
@@ -192,7 +192,9 @@ button#settings {
 #controls #albumart {
   width: 200px;
   height: 100%;
-  background-color: red;
+  background-color: #2d2d2d;
+  background-image: url('img/default.png');
+  background-size: 100%;
   position: absolute;
   left: 0;
   top: 0;

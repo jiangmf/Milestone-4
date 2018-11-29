@@ -74,26 +74,32 @@ $("html").on('click', '#nav-bar h2', function() {
   $("#" + id + "Window").removeClass('hidden');
 });
 
-$("html").on('click', '.songList tr', function() {
+$("html").on('click', '.songList tbody tr', function() {
   $(".songList tr").removeClass('active');
   $(this).addClass('active');
   var tableVal = []
   $(this).find('td').each(function(i) {
     tableVal.push($(this).text());
   })
+
   $("#songname").html(tableVal[0]);
   $("#artistname").html(tableVal[1]);
+
   $("#progress-right").html(tableVal[3]);
   var time = tableVal[3].split(":");
   var seconds = (+time[0] * 60) + (+time[1]);
+
   $("#progressbar").attr("max", seconds);
+	$("#progressbar").val('0');
   var currenttime = convertDuration($("#progressbar").val());
   $("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
-  $("#progressbar").on('input', function() {
-    var currenttime = convertDuration($(this).val());
-    $("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
-  });
 
+	$("#albumart").html(`<img src='https://picsum.photos/200/200/?image=${$(this).attr('data-id')}'/>`);
+});
+
+$("html").on('input', '#progressbar', function() {
+	var currenttime = convertDuration($(this).val());
+	$("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
 });
 
 $(function() {
@@ -142,17 +148,17 @@ function showPlaylist(playlist) {
     var id = playlistSongs['songs'][song];
     duration = convertDuration(songs[id]["duration"]);
     html += `
-			<tr><td><span>${songs[id]["title"]}</span></td>
+			<tr data-id=${id}><td><span>${songs[id]["title"]}</span></td>
 			<td><span>${songs[id]["artist"]}</span></td>
 			<td><span>${songs[id]["album"]}</span></td>
 			<td><span>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</span></td></tr>
 			`
   }
   html += "</tbody>";
-  console.log(html);
   table.html(html);
   $("#playlistWindow .songTable").html(table);
   $('.songList').dataTable({
+		autoWidth: false,
     paging: false,
     searching: false,
     bInfo: false,
@@ -191,7 +197,7 @@ function showLibrary() {
     duration = convertDuration(songs[id]["duration"]);
 
     html += `
-			<tr><td><span>${songs[id]["title"]}</span></td>
+			<tr data-id=${id}><td><span>${songs[id]["title"]}</span></td>
 			<td><span>${songs[id]["artist"]}</span></td>
 			<td><span>${songs[id]["album"]}</span></td>
 			<td><span>${duration[0] + ":" + duration[1].toString().padStart(2,'0')}</span></td></tr>
@@ -201,6 +207,7 @@ function showLibrary() {
   table.html(html);
   $("#libraryWindow .songTable").html(table);
   $('#libraryWindow .songTable.songList').dataTable({
+		autoWidth: false,
     paging: false,
     searching: false,
     bInfo: false,
