@@ -378,17 +378,22 @@ var playlists = {
 
 var activePlaylist = Object.keys(playlists)[0];
 var isPlaying = false;
+var progressVal = 0;
+var intervalTimer;
+
 
 $("html").on("click", ".fas.fa-play", function() {
   $(this).addClass("hidden");
   $(".fas.fa-pause").removeClass("hidden");
-  var progressVal = $("#progressbar").val();
-  var id = setInterval(bar, 1000);
+  progressVal = +$("#progressbar").val();
+	clearInterval(intervalTimer);
+  intervalTimer = setInterval(bar, 1000);
   isPlaying = true;
   function bar(){
+		console.log("a")
     if(isPlaying){
-      if (progressVal>=100){
-        clearInterval(progressVal)
+      if (progressVal == + $("#progressbar").attr('max')){
+				$(".fa-step-forward").click();
       }else{
         progressVal++;
         $("#progressbar").val(progressVal).trigger('input');
@@ -399,7 +404,6 @@ $("html").on("click", ".fas.fa-play", function() {
 $("html").on("click", ".fas.fa-pause", function() {
   $(this).addClass("hidden");
   $(".fas.fa-play").removeClass("hidden");
-  var progressVal = $("#progressbar").val();
   isPlaying = false;
 })
 
@@ -441,11 +445,13 @@ $("html").on('click', '.songList tbody tr', function() {
   $("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
 
 	$("#albumart").html(`<img src='https://picsum.photos/200/200/?image=${$(this).attr('data-id')}'/>`);
+	progressVal = 0;
 });
 
 $("html").on('input', '#progressbar', function() {
 	var currenttime = convertDuration($(this).val());
 	$("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
+	progressVal = +$(this).val();
 });
 
 $("html").on('click', '.fa-random, .fa-redo-alt', function(){
