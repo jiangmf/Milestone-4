@@ -368,11 +368,11 @@ var playlists = {
   },
   'Gym': {
     name: 'Gym',
-    songs: [1, 2, 3, 4]
+    songs: [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50]
   },
   'Relax': {
     name: 'Relax',
-    songs: [3, 4]
+    songs: [1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59]
   }
 }
 
@@ -432,9 +432,15 @@ $("html").on('input', '#progressbar', function() {
 	$("#progress-left").html(currenttime[0] + ":" + currenttime[1].toString().padStart(2, '0'));
 });
 
-$("html").on('click', '.fa-random,.fa-redo-alt', function(){
-  console.log("clicked")
+$("html").on('click', '.fa-random, .fa-redo-alt', function(){
   $(this).toggleClass("toggle")
+});
+
+$("html").on('click', '.fa-step-backward', function(){
+	$("tr.active:visible").prev("tr").click();
+})
+$("html").on('click', '.fa-step-forward', function(){
+	$("tr.active:visible").next("tr").click();
 })
 
 $(function() {
@@ -598,7 +604,8 @@ function drop(ev) {
 		var id = ev.dataTransfer.getData('songid');
 		console.log(ev)
 		var playlist = $(ev.target).closest("div").attr("id");
-		playlists[playlist].songs.push(id);
+		playlists[playlist].songs.push(+id);
+		playlists[playlist].songs = [...new Set(playlists[playlist].songs)]
 		playlistSidebar();
 		if(activePlaylist == playlist){
 		showPlaylist(playlist);
